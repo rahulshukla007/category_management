@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Category Management</title>
+
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+    </head>
+<body>
+    <a href="/logout">logout</a>
+
+    <form action = "", method="post"> 
+        {% csrf_token %}
+        <table>
+            {{form.as_p}}
+        </table>
+        
+        <input type='submit' value = 'Submit'> <br>
+    </form>
+    
+    <table>
+      
+        <tr>
+          <th>Category Name</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        {% for i in cat_obj%}
+            <tr>
+                
+            <td>{{i.category_name}}</td>
+            <td> <a href = "#">Edit</a></td>
+            <td><a href="{% url 'DeleteCategory' i.id  %}">Delete</a></td>
+            </tr>
+            
+        {% endfor %}
+        
+      </table>
+</body>
+</html>
+
